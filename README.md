@@ -29,3 +29,47 @@ REST API для учёта коллекции видеоигр, написанн
    ```bash
    git clone https://github.com/AratoshiAsura/GameTracker.git
    cd GameTracker
+Создай и активируй виртуальное окружение:
+
+bash
+python -m venv .venv
+source .venv/bin/activate  # Для Linux/macOS
+# .venv\Scripts\activate   # Для Windows
+Установи зависимости:
+
+bash
+pip install -r requirements.txt
+Запусти приложение:
+
+bash
+uvicorn main:app --reload
+Открой интерактивную документацию:
+Перейди по адресу http://127.0.0.1:8000/docs, чтобы протестировать эндпоинты через Swagger UI.
+
+🧪 Запуск тестов
+Проект содержит 9 тестов, покрывающих все эндпоинты и логику валидации. Чтобы запустить их:
+
+bash
+pytest -v
+Ожидаемый результат: 9 passed
+
+📡 Эндпоинты API
+Метод	Путь	Описание
+GET	/health	Проверка работоспособности сервиса
+GET	/games	Список всех игр (поддерживает фильтры ?status= и ?platform=)
+POST	/games	Добавление новой игры
+GET	/games/{id}	Получение конкретной игры по ID
+PATCH	/games/{id}	Обновление данных игры
+DELETE	/games/{id}	Удаление игры
+GET	/stats	Получение статистики коллекции
+📂 Структура проекта
+text
+GameTracker/
+├── main.py            # Приложение FastAPI и эндпоинты
+├── database.py        # Настройка асинхронного подключения к БД
+├── models.py          # ORM-модели SQLAlchemy
+├── schemas.py         # Схемы валидации Pydantic
+├── requirements.txt   # Зависимости проекта
+└── tests/             # Тесты
+    └── test_api.py    # Тесты API
+text
